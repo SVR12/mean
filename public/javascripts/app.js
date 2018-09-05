@@ -1,4 +1,5 @@
 var app = angular.module("myApp", ['ngStorage']);
+// import '../stylesheets/style.css';
 
 app.controller("myCtrl", function($scope, $http, $localStorage) {
 	var socket = io.connect();
