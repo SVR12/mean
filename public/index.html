@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+	<script src="javascripts/app.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+
+	<div ng-app="myApp" ng-controller="myCtrl" class="container">
+		<div class="row justify-content-md-center" style="margin:15px">
+			<div class="col-md-8 col-xs-8 col-sm-8">
+
+				<div ng-show="loginForm">
+					<div class="text-center">
+						<h2>Please Login/Register</h2>
+					</div>
+					<div>
+						<form ng-submit="login()">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Full Name:</label>
+								<input class="form-control" type="text" ng-model="user.name" required placeholder="Enter full name">
+							</div>
+
+							<div class="form-group">
+
+								<label for="exampleInputEmail1">Email address:</label>
+								<input class="form-control" type="text" ng-model="user.email" required placeholder="Enter email">
+
+							</div>
+							<button type="submit" class="btn btn-primary">Login/Register</button>
+						</form>
+						</md-card>
+					</div>
+				</div>
+
+				<div ng-show="!loginForm" style="overflow-y: scroll;">
+					<div class="row justify-content-md-center">
+						<div class="col-md-9 col-xs-9 col-sm-9">
+							<div class="input-group">
+								<input class="form-control" ng-model="post" autocomplete="off" />
+								<div class="input-group-append">
+									<button class="btn btn-outline-success" ng-click="submitPost()">Post</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-xs-3 col-sm-3">
+							<button class="btn btn-danger btn-block" ng-click="logout()">Logout</button>
+						</div>
+					</div>
+					<div class="row justify-content-md-center">
+						<div class="col-md-12 col-xs-12 col-sm-12" ng-repeat="post in posts | orderBy:'post.createdAt':true ">
+							<div class="card" style="margin:15px">
+								<div class="card-body">
+									<div class="card-title">
+										<h5>Post by {{post.user_name}} <small class="text-muted">{{post.time}}</small><h5>
+										</div>
+									<p class="card-text">{{post.post}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+	</script>
+
+</body>
+
+</html>
